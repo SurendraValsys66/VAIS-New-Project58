@@ -530,41 +530,111 @@ export default function BuildVAISForm() {
 
         {/* Enhanced Steps Progress */}
         <Card className="bg-gradient-to-r from-valasys-orange/5 to-valasys-blue/5 border-valasys-orange/20">
-          <CardHeader>
+          <CardHeader className="pb-4">
             {/* Step Progress Indicator */}
-            <div className="space-y-4">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 md:gap-4">
+            <div className="space-y-6">
+              {/* Desktop: Horizontal layout with connecting lines */}
+              <div className="hidden lg:flex items-center justify-between">
                 {steps.map((step, index) => {
-                  const StepIcon = step.icon;
+                  const isActive = currentStep === step.id;
+                  const isCompleted = isStepValid(step.id);
+                  const isPending = !isCompleted && !isActive;
+
+                  return (
+                    <div key={step.id} className="flex items-center flex-1">
+                      {/* Step Circle */}
+                      <div className="flex flex-col items-center relative z-10">
+                        <div
+                          className={cn(
+                            "flex items-center justify-center w-12 h-12 rounded-full border-3 transition-all font-semibold text-base",
+                            isActive
+                              ? "border-valasys-orange bg-valasys-orange text-white shadow-md"
+                              : isCompleted
+                                ? "border-green-500 bg-green-500 text-white"
+                                : "border-gray-300 bg-white text-gray-400",
+                          )}
+                        >
+                          {isCompleted && !isActive ? (
+                            <Check className="w-6 h-6" />
+                          ) : (
+                            <span>{step.id}</span>
+                          )}
+                        </div>
+                        <span
+                          className={cn(
+                            "mt-3 text-xs font-medium whitespace-nowrap text-center px-2",
+                            isActive
+                              ? "text-valasys-orange font-semibold"
+                              : isCompleted
+                                ? "text-green-600"
+                                : "text-gray-500",
+                          )}
+                        >
+                          {step.name}
+                        </span>
+                      </div>
+
+                      {/* Connection Line */}
+                      {index < steps.length - 1 && (
+                        <div className="flex-1 h-1 mx-3 relative -mt-8">
+                          <div
+                            className={cn(
+                              "absolute top-1/2 w-full h-1 rounded transition-all",
+                              isCompleted ? "bg-green-500" : "bg-gray-300",
+                            )}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Mobile: Vertical/Stacked layout */}
+              <div className="flex lg:hidden flex-col">
+                {steps.map((step, index) => {
                   const isActive = currentStep === step.id;
                   const isCompleted = isStepValid(step.id);
 
                   return (
                     <div
                       key={step.id}
-                      className="flex items-center w-full lg:w-auto"
+                      className="flex items-center mb-4 last:mb-0"
                     >
+                      {/* Vertical connector line */}
+                      {index < steps.length - 1 && (
+                        <div
+                          className={cn(
+                            "absolute left-6 w-1 h-12 ml-0.5 -mb-4",
+                            isCompleted ? "bg-green-500" : "bg-gray-300",
+                          )}
+                        />
+                      )}
+
+                      {/* Step Circle */}
                       <div
                         className={cn(
-                          "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all flex-shrink-0",
+                          "flex items-center justify-center w-12 h-12 rounded-full border-3 transition-all font-semibold text-base flex-shrink-0 relative z-10",
                           isActive
-                            ? "border-valasys-orange bg-valasys-orange text-white"
+                            ? "border-valasys-orange bg-valasys-orange text-white shadow-md"
                             : isCompleted
                               ? "border-green-500 bg-green-500 text-white"
                               : "border-gray-300 bg-white text-gray-400",
                         )}
                       >
                         {isCompleted && !isActive ? (
-                          <Check className="w-5 h-5" />
+                          <Check className="w-6 h-6" />
                         ) : (
-                          <StepIcon className="w-5 h-5" />
+                          <span>{step.id}</span>
                         )}
                       </div>
+
+                      {/* Step Name */}
                       <span
                         className={cn(
-                          "ml-2 text-xs sm:text-sm font-medium whitespace-nowrap",
+                          "ml-4 text-sm font-medium",
                           isActive
-                            ? "text-valasys-orange"
+                            ? "text-valasys-orange font-semibold"
                             : isCompleted
                               ? "text-green-600"
                               : "text-gray-500",
@@ -572,19 +642,15 @@ export default function BuildVAISForm() {
                       >
                         {step.name}
                       </span>
-                      {index < steps.length - 1 && (
-                        <div
-                          className={cn(
-                            "hidden lg:block w-12 h-0.5 mx-4 flex-shrink-0",
-                            isCompleted ? "bg-green-500" : "bg-gray-300",
-                          )}
-                        />
-                      )}
                     </div>
                   );
                 })}
               </div>
-              <Progress value={getStepProgress()} className="h-2" />
+
+              {/* Progress Bar */}
+              <div className="pt-2">
+                <Progress value={getStepProgress()} className="h-2" />
+              </div>
             </div>
           </CardHeader>
         </Card>
