@@ -296,6 +296,13 @@ export default function WishlistProspects() {
                       Find Prospects
                     </Button>
                   </Link>
+                  <Button
+                    onClick={addSampleData}
+                    variant="outline"
+                    className="mt-3"
+                  >
+                    View Sample Data
+                  </Button>
                 </div>
               </CardContent>
             </Card>
