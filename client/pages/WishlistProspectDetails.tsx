@@ -579,8 +579,12 @@ export default function WishlistProspectDetails() {
                 <TooltipContent>Back</TooltipContent>
               </Tooltip>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">List Not Found</h1>
-                <p className="text-sm text-gray-600 mt-1">The list you're looking for doesn't exist</p>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  List Not Found
+                </h1>
+                <p className="text-sm text-gray-600 mt-1">
+                  The list you're looking for doesn't exist
+                </p>
               </div>
             </div>
             <Button onClick={() => navigate("/wishlist-prospects")}>
@@ -597,13 +601,16 @@ export default function WishlistProspectDetails() {
       return [];
     }
     const prospectIdsInList = new Set(currentList.prospects);
-    return initialProspectsData.filter(prospect => prospectIdsInList.has(prospect.id));
+    return initialProspectsData.filter((prospect) =>
+      prospectIdsInList.has(prospect.id),
+    );
   }, [currentList]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  const [sortField, setSortField] = useState<keyof ProspectData>("engagementScore");
+  const [sortField, setSortField] =
+    useState<keyof ProspectData>("engagementScore");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [columnVisibility, setColumnVisibility] = useState({
@@ -759,7 +766,13 @@ export default function WishlistProspectDetails() {
 
   const handleDownload = () => {
     try {
-      const csvHeader = ["Prospect Name", "Email", "Company", "Job Title", "Country"];
+      const csvHeader = [
+        "Prospect Name",
+        "Email",
+        "Company",
+        "Job Title",
+        "Country",
+      ];
       const csvRows = paginatedData.map((prospect) => [
         prospect.fullName,
         prospect.email,
@@ -777,7 +790,10 @@ export default function WishlistProspectDetails() {
       const link = document.createElement("a");
       const url = URL.createObjectURL(blob);
       link.setAttribute("href", url);
-      link.setAttribute("download", `${currentList.name.replace(/\s+/g, "_")}_prospects.csv`);
+      link.setAttribute(
+        "download",
+        `${currentList.name.replace(/\s+/g, "_")}_prospects.csv`,
+      );
       link.style.visibility = "hidden";
       document.body.appendChild(link);
       link.click();
@@ -817,9 +833,12 @@ export default function WishlistProspectDetails() {
                 <TooltipContent>Back</TooltipContent>
               </Tooltip>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">{currentList.name}</h1>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {currentList.name}
+                </h1>
                 <div className="text-sm text-gray-600 mt-1">
-                  {currentList.prospects.length} prospect{currentList.prospects.length !== 1 ? "s" : ""}
+                  {currentList.prospects.length} prospect
+                  {currentList.prospects.length !== 1 ? "s" : ""}
                 </div>
               </div>
             </div>
@@ -1225,7 +1244,9 @@ export default function WishlistProspectDetails() {
                                   variant="ghost"
                                   size="sm"
                                   className="h-8 w-8 p-0 hover:bg-yellow-50"
-                                  onClick={() => handleRemoveProspect(prospect.id)}
+                                  onClick={() =>
+                                    handleRemoveProspect(prospect.id)
+                                  }
                                 >
                                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                                 </Button>
@@ -1251,7 +1272,10 @@ export default function WishlistProspectDetails() {
                                     {prospect.fullName}
                                   </div>
                                   <div className="text-sm text-gray-500 flex items-center">
-                                    <Badge className="text-xs" variant="outline">
+                                    <Badge
+                                      className="text-xs"
+                                      variant="outline"
+                                    >
                                       {prospect.intentSignal}
                                     </Badge>
                                   </div>
@@ -1319,17 +1343,22 @@ export default function WishlistProspectDetails() {
                                       size="sm"
                                       className="h-8 w-8 p-0"
                                       onClick={() => {
-                                        navigator.clipboard.writeText(prospect.email);
+                                        navigator.clipboard.writeText(
+                                          prospect.email,
+                                        );
                                         toast({
                                           title: "Copied",
-                                          description: "Email copied to clipboard",
+                                          description:
+                                            "Email copied to clipboard",
                                         });
                                       }}
                                     >
                                       <Mail className="w-4 h-4 text-gray-400 hover:text-gray-600" />
                                     </Button>
                                   </TooltipTrigger>
-                                  <TooltipContent>{prospect.email}</TooltipContent>
+                                  <TooltipContent>
+                                    {prospect.email}
+                                  </TooltipContent>
                                 </Tooltip>
                               </div>
                             </TableCell>
@@ -1344,17 +1373,22 @@ export default function WishlistProspectDetails() {
                                       size="sm"
                                       className="h-8 w-8 p-0"
                                       onClick={() => {
-                                        navigator.clipboard.writeText(prospect.email);
+                                        navigator.clipboard.writeText(
+                                          prospect.email,
+                                        );
                                         toast({
                                           title: "Copied",
-                                          description: "Email copied to clipboard",
+                                          description:
+                                            "Email copied to clipboard",
                                         });
                                       }}
                                     >
                                       <Mail className="w-4 h-4 text-gray-400 hover:text-gray-600" />
                                     </Button>
                                   </TooltipTrigger>
-                                  <TooltipContent>{prospect.email}</TooltipContent>
+                                  <TooltipContent>
+                                    {prospect.email}
+                                  </TooltipContent>
                                 </Tooltip>
                               </div>
                             </TableCell>
@@ -1364,7 +1398,9 @@ export default function WishlistProspectDetails() {
                     ) : (
                       <TableRow>
                         <TableCell colSpan={9} className="text-center py-8">
-                          <div className="text-gray-500">No prospects found</div>
+                          <div className="text-gray-500">
+                            No prospects found
+                          </div>
                         </TableCell>
                       </TableRow>
                     )}
@@ -1391,7 +1427,9 @@ export default function WishlistProspectDetails() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(totalPages, p + 1))
+                }
                 disabled={currentPage === totalPages}
               >
                 Next

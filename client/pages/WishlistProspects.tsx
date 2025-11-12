@@ -183,7 +183,12 @@ export default function WishlistProspects() {
       {
         id: "sample-1",
         name: "Enterprise Tech Leaders",
-        prospects: ["prospect-001", "prospect-002", "prospect-003", "prospect-004"],
+        prospects: [
+          "prospect-001",
+          "prospect-002",
+          "prospect-003",
+          "prospect-004",
+        ],
         createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
       },
       {
@@ -195,7 +200,13 @@ export default function WishlistProspects() {
       {
         id: "sample-3",
         name: "C-Level Executives",
-        prospects: ["prospect-008", "prospect-009", "prospect-010", "prospect-011", "prospect-012"],
+        prospects: [
+          "prospect-008",
+          "prospect-009",
+          "prospect-010",
+          "prospect-011",
+          "prospect-012",
+        ],
         createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
       },
     ];
@@ -268,7 +279,9 @@ export default function WishlistProspects() {
                       Get Started with Prospect Lists
                     </h3>
                     <p className="text-gray-600">
-                      Create curated lists to organize and manage your prospects. Build lists directly from search results or create an empty list and add prospects later.
+                      Create curated lists to organize and manage your
+                      prospects. Build lists directly from search results or
+                      create an empty list and add prospects later.
                     </p>
                   </div>
 
@@ -281,7 +294,10 @@ export default function WishlistProspects() {
                       Create List
                     </Button>
                     <Link to="/prospect-results">
-                      <Button variant="outline" className="border-valasys-orange text-valasys-orange hover:bg-valasys-orange/5">
+                      <Button
+                        variant="outline"
+                        className="border-valasys-orange text-valasys-orange hover:bg-valasys-orange/5"
+                      >
                         <Search className="w-4 h-4 mr-2" />
                         Find Prospects
                       </Button>
@@ -301,7 +317,10 @@ export default function WishlistProspects() {
           </div>
 
           {/* Create List Dialog */}
-          <Dialog open={createListDialogOpen} onOpenChange={setCreateListDialogOpen}>
+          <Dialog
+            open={createListDialogOpen}
+            onOpenChange={setCreateListDialogOpen}
+          >
             <DialogContent className="max-w-sm">
               <DialogHeader>
                 <DialogTitle>Create New List</DialogTitle>
@@ -430,7 +449,9 @@ export default function WishlistProspects() {
                         <TableRow key={list.id}>
                           <TableCell>
                             <button
-                              onClick={() => navigate(`/wishlist-prospects/${list.id}`)}
+                              onClick={() =>
+                                navigate(`/wishlist-prospects/${list.id}`)
+                              }
                               className="font-medium text-gray-900 hover:text-valasys-orange cursor-pointer transition-colors"
                             >
                               {list.name}
