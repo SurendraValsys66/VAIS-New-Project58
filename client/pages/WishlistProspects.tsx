@@ -429,11 +429,21 @@ export default function WishlistProspects() {
                 </TooltipTrigger>
                 <TooltipContent>Back</TooltipContent>
               </Tooltip>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-                  <Heart className="w-6 h-6 mr-3 text-valasys-orange" />
-                  Wishlist Prospects
-                </h1>
+              <div className="flex-1">
+                <div className="flex items-center space-x-3">
+                  <h1 className="text-2xl font-bold text-gray-900 flex items-center">
+                    <Heart className="w-6 h-6 mr-3 text-valasys-orange" />
+                    Wishlist Prospects
+                  </h1>
+                  <Button
+                    onClick={() => setCreateListDialogOpen(true)}
+                    className="bg-valasys-orange hover:bg-valasys-orange/90 text-white"
+                    size="sm"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Create List
+                  </Button>
+                </div>
                 <div className="text-sm text-gray-600 mt-1">
                   Manage your saved prospect lists
                 </div>
