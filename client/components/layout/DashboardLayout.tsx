@@ -93,8 +93,8 @@ const coreNavigationItems = [
     tourId: "prospect-nav",
     submenu: [
       {
-        name: "Favorites Prospects",
-        href: "/favorites-prospects",
+        name: "Wishlist Prospects",
+        href: "/wishlist-prospects",
         icon: Heart,
         tourId: "favorites-nav",
       },
