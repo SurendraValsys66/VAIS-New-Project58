@@ -725,6 +725,7 @@ export default function Payments() {
                     onDelete={handleDeletePaymentMethod}
                     onSetDefault={handleSetDefaultPaymentMethod}
                     onAutopayChange={handleAutopayChange}
+                    onEdit={handleEditPaymentMethod}
                   />
                 ))}
               </div>
