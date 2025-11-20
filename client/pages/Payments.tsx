@@ -84,6 +84,32 @@ interface PaymentMethod {
   autopayEnabled: boolean;
 }
 
+const COUNTRIES = [
+  "United States",
+  "Canada",
+  "United Kingdom",
+  "Australia",
+  "India",
+  "Germany",
+  "France",
+  "Japan",
+  "Brazil",
+  "Mexico",
+  "Singapore",
+  "Netherlands",
+  "Sweden",
+  "Switzerland",
+];
+
+interface AddPaymentFormData {
+  cardholderName: string;
+  cardNumber: string;
+  expiryDate: string;
+  cvc: string;
+  country: string;
+  paypalEmail: string;
+}
+
 const paymentMethods: PaymentMethod[] = [
   {
     id: "pm_1",
